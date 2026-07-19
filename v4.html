@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#151412">
+  <title>Dresden 1945 · Version 4</title>
+  <style>body{margin:0;background:#151412;color:#f6f0e7;font-family:system-ui,sans-serif;min-height:100vh;display:grid;place-items:center}p{opacity:.75}</style>
+</head>
+<body>
+<p>Indlæser den udvidede Dresden-fortælling…</p>
+<script>
+(async function(){
+  const baseUrl='https://raw.githubusercontent.com/casperudesen/axebang/ddc75d28d806cb314cb8a7f3698b86564a85d010/index.html';
+  try{
+    let html=await fetch(baseUrl,{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('Kunne ikke hente grundsiden');return r.text()});
+    html=html.replace('Version 3 · billeder verificeret','Version 4 · komplette billedforløb');
+    html=html.replace('<title>Dresden 1945 · ødelæggelse og genopbygning</title>','<title>Dresden 1945 · komplette billedforløb</title>');
+    const extraCss=`<style>
+      .building-story{margin-top:3rem}.building-story>h3{font-size:clamp(2rem,5vw,3rem);margin:.25rem 0 .45rem}.building-story>.intro{max-width:780px;margin-top:0}.story-cards.triptych{display:grid;gap:1rem;margin-top:1.25rem}
+      @media(min-width:860px){.story-cards.triptych{grid-template-columns:repeat(3,1fr)}}
+    </style>`;
+    const injection=`<script>
+      document.addEventListener('DOMContentLoaded',function(){
+        const host=document.querySelector('#genopbygning .story-cards');
+        if(host){
+          host.outerHTML=\`
+            <div class="building-story">
+              <div class="eyebrow">Semperoper</div>
+              <h3>Før, ruin og genopført</h3>
+              <p class="intro">Operaens historie kan nu læses i tre tydelige billeder: bygningen omkring 1900, det ødelagte auditorium i 1945 og den genopførte opera efter genåbningen i 1985.</p>
+              <div class="story-cards triptych">
+                <article class="story-card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Dresden_Semperoper_1900.jpg/1280px-Dresden_Semperoper_1900.jpg" alt="Semperoper omkring 1900" onerror="imageFallback(this,'Semperoper før 1945')"><div class="copy"><div class="eyebrow">ca. 1900</div><h3>Før ødelæggelsen</h3><p>Den anden Semperoper, opført 1871–1878 efter Gottfried Sempers tegninger og fuldført af sønnen Manfred.</p></div></article>
+                <article class="story-card"><img src="https://upload.wikimedia.org/wikipedia/commons/0/03/Bundesarchiv_Bild_183-1985-0117-031%2C_Dresden%2C_zerst%C3%B6rte_Semperoper.jpg" alt="Semperopers ødelagte auditorium i 1945" onerror="imageFallback(this,'Semperoper i ruiner')"><div class="copy"><div class="eyebrow">1945</div><h3>Et tomt skalskelet</h3><p>Auditoriet og scenehuset blev næsten fuldstændigt ødelagt under bombardementet.</p></div></article>
+                <article class="story-card"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Semperoper-dresden.jpg?width=1280" alt="Den genopførte Semperoper" onerror="imageFallback(this,'Den genopførte Semperoper')"><div class="copy"><div class="eyebrow">1985 og frem</div><h3>Genopført før murens fald</h3><p>Operaen genåbnede den 13. februar 1985, præcis 40 år efter ødelæggelsen.</p></div></article>
+              </div>
+            </div>
+            <div class="building-story">
+              <div class="eyebrow">Residenzschloss</div>
+              <h3>Fra kongeligt slot til ruin og museum</h3>
+              <p class="intro">Slottet stod som en alvorligt beskadiget skal i årtier. Dagens bygning kombinerer bevaret murværk, rekonstruktioner og moderne museumsarkitektur.</p>
+              <div class="story-cards triptych">
+                <article class="story-card"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Dresden_Schloss_1900.jpg?width=1280" alt="Dresdens Residenzschloss omkring 1900" onerror="imageFallback(this,'Residenzschloss før 1945')"><div class="copy"><div class="eyebrow">ca. 1900</div><h3>Det kongelige slot</h3><p>Residenzschloss og Stallhof før krigen, fotograferet som photochrom fra Library of Congress.</p></div></article>
+                <article class="story-card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Dresdner_Schloss_DDR-Zustand.jpg/1280px-Dresdner_Schloss_DDR-Zustand.jpg" alt="Residenzschloss som ruin i 1980" onerror="imageFallback(this,'Residenzschloss før restaureringen')"><div class="copy"><div class="eyebrow">1980</div><h3>En ruin i årtier</h3><p>Store dele stod fortsat åbne og beskadigede mere end tre årtier efter bombardementet.</p></div></article>
+                <article class="story-card"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Residenzschloss-Dresden.jpg?width=1280" alt="Det restaurerede Residenzschloss" onerror="imageFallback(this,'Det restaurerede Residenzschloss')"><div class="copy"><div class="eyebrow">I dag</div><h3>Historisk og nyt side om side</h3><p>Paladset rummer både rekonstruerede repræsentationsrum og moderne museumsindgreb.</p></div></article>
+              </div>
+            </div>
+            <div class="building-story">
+              <div class="eyebrow">Neumarkt</div>
+              <h3>Den forsvundne og genopførte plads</h3>
+              <p class="intro">Neumarkt er ikke én samlet kopi. Området er genopført kvarter for kvarter med en blanding af dokumenterede historiske facader og nyere fortolkninger.</p>
+              <div class="story-cards triptych">
+                <article class="story-card"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Dresden_Neumarkt_Hotel_Stadt_Rom_Postkarte_um_1900.jpg" alt="Neumarkt omkring 1900" onerror="imageFallback(this,'Neumarkt før 1945')"><div class="copy"><div class="eyebrow">ca. 1900</div><h3>Den tætte historiske plads</h3><p>Et postkort med Hotel Stadt Rom viser skalaen og facaderne omkring den gamle plads.</p></div></article>
+                <article class="story-card"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Bundesarchiv_Bild_146-1994-041-07,_Dresden,_zerst%C3%B6rtes_Stadtzentrum.jpg" alt="Det ødelagte Neumarkt i 1945" onerror="imageFallback(this,'Neumarkt efter ødelæggelsen')"><div class="copy"><div class="eyebrow">1945</div><h3>Bykernen udslettet</h3><p>Fra Kreuzkirches tårn ses Neumarkt og Frauenkirches ruin midt i det ødelagte centrum.</p></div></article>
+                <article class="story-card"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Neumarkt_Dresden.jpg?width=1280" alt="Det genopførte Neumarkt" onerror="imageFallback(this,'Det genopførte Neumarkt')"><div class="copy"><div class="eyebrow">I dag</div><h3>Rekonstruktion og nybyggeri</h3><p>Pladsen viser både historisk rekonstruerede facader og moderne bygninger på de gamle parceller.</p></div></article>
+              </div>
+            </div>\`;
+        }
+        const sources=document.querySelector('.source-grid');
+        if(sources){sources.insertAdjacentHTML('beforeend',\`
+          <div class="source"><a href="https://commons.wikimedia.org/wiki/File:Dresden_Semperoper_1900.jpg">Semperoper før bombardementet</a><p>Photochrom fra ca. 1890–1905, Library of Congress, public domain.</p></div>
+          <div class="source"><a href="https://commons.wikimedia.org/wiki/File:Bundesarchiv_Bild_183-1985-0117-031,_Dresden,_zerst%C3%B6rte_Semperoper.jpg">Semperoper i ruiner</a><p>Bundesarchiv, 1945, CC BY-SA 3.0 DE.</p></div>
+          <div class="source"><a href="https://commons.wikimedia.org/wiki/File:Dresden_Schloss_1900.jpg">Residenzschloss før krigen</a><p>Photochrom fra ca. 1890–1905, Library of Congress, public domain.</p></div>
+          <div class="source"><a href="https://commons.wikimedia.org/wiki/File:Dresdner_Schloss_DDR-Zustand.jpg">Residenzschloss i 1980</a><p>Foto af Gabriele Delhey, CC BY-SA 3.0.</p></div>
+          <div class="source"><a href="https://commons.wikimedia.org/wiki/File:Dresden_Neumarkt_Hotel_Stadt_Rom_Postkarte_um_1900.jpg">Neumarkt omkring 1900</a><p>Historisk postkort, public domain.</p></div>
+          <div class="source"><a href="https://commons.wikimedia.org/wiki/File:Bundesarchiv_Bild_146-1994-041-07,_Dresden,_zerst%C3%B6rtes_Stadtzentrum.jpg">Det ødelagte Neumarkt</a><p>Bundesarchiv, 1945, CC BY-SA 3.0 DE.</p></div>\`)}
+      });
+    <\/script>`;
+    html=html.replace('</head>',extraCss+'</head>').replace('</body>',injection+'</body>');
+    document.open();document.write(html);document.close();
+  }catch(error){
+    document.body.innerHTML='<main style="max-width:680px;padding:24px"><h1>Version 4 kunne ikke indlæses</h1><p>'+error.message+'</p><p><a style="color:#f1bd96" href="https://casperudesen.github.io/axebang/">Gå tilbage</a></p></main>';
+  }
+})();
+</script>
+</body>
+</html>
