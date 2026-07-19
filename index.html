@@ -1,1 +1,385 @@
-<!doctype html><html lang="da"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#161513"><title>Dresden 1945 · billedfix 2</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""><script src="https://unpkg.com/vue@3.5.39/dist/vue.global.prod.js"></script><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><style>:root{--bg:#161513;--panel:#23211f;--text:#f5efe6;--muted:#b9b0a5;--accent:#e39a67;--line:rgba(255,255,255,.14)}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;line-height:1.55}h1,h2,h3{font-family:Georgia,serif;line-height:1.05}h1{font-size:clamp(3.6rem,16vw,7rem);margin:0;max-width:8ch;font-weight:500}h2{font-size:clamp(2.2rem,10vw,4.5rem);font-weight:500;margin:.25rem 0 1rem}p{color:var(--muted)}.wrap{width:min(100% - 24px,980px);margin:auto}.hero{min-height:88svh;display:flex;align-items:end;padding:3rem 0;background:linear-gradient(to top,#161513 0%,rgba(22,21,19,.15) 70%),url("https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Bundesarchiv_Bild_183-60015-0002%2C_Dresden%2C_Denkmal_Martin_Luther%2C_Frauenkirche%2C_Ruine.jpg/960px-Bundesarchiv_Bild_183-60015-0002%2C_Dresden%2C_Denkmal_Martin_Luther%2C_Frauenkirche%2C_Ruine.jpg") center/cover}.eyebrow{text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;color:#f1c4a4}.lead{font-size:1.12rem;max-width:700px;color:#ddd5ca}.chips{display:flex;gap:.5rem;flex-wrap:wrap}.chip{padding:.45rem .7rem;border:1px solid rgba(255,255,255,.3);border-radius:99px;background:rgba(0,0,0,.3);font-size:.8rem}.nav{position:sticky;top:0;z-index:10;display:flex;overflow:auto;background:rgba(22,21,19,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}.nav a{padding:.9rem;color:var(--muted);text-decoration:none;white-space:nowrap;font-size:.82rem}section{padding:4.5rem 0;border-bottom:1px solid var(--line)}.stats{display:grid;gap:.7rem}.stat{display:grid;grid-template-columns:120px 1fr;align-items:center;padding:1rem;border:1px solid var(--line);background:var(--panel);border-radius:16px}.stat strong{font:2rem Georgia}.stat span{color:var(--muted);font-size:.87rem}.timeline{display:flex;gap:.8rem;overflow:auto;scroll-snap-type:x mandatory;padding-bottom:.5rem}.card{min-width:82vw;scroll-snap-align:start;padding:1.2rem;background:var(--panel);border:1px solid var(--line);border-radius:18px}.time{color:#f1c4a4;font-weight:700}.compare{position:relative;aspect-ratio:3/4;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#333}.compare img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.after{position:absolute;inset:0;width:50%;overflow:hidden;border-right:2px solid white}.after img{width:calc(100vw - 24px);max-width:980px}.range{position:absolute;inset:0;width:100%;height:100%;opacity:0}.handle{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:#fff;color:#111;display:grid;place-items:center;font-weight:800;pointer-events:none}.label{position:absolute;top:.8rem;background:rgba(0,0,0,.65);padding:.35rem .55rem;border-radius:99px;font-size:.72rem}.before-label{right:.8rem}.after-label{left:.8rem}.mapbox{display:grid;gap:1rem}.map{position:relative;aspect-ratio:1/1.15;border-radius:20px;overflow:hidden;background:#d8d1c5;border:1px solid var(--line)}.map svg{width:100%;height:100%;display:block}.place-list{display:grid;gap:.55rem}.place{width:100%;text-align:left;border:1px solid var(--line);background:var(--panel);color:var(--text);padding:.9rem;border-radius:13px}.place.active{border-color:var(--accent)}.place small{display:block;color:#f1c4a4}.place span{display:block;color:var(--muted);font-size:.82rem;margin-top:.2rem}.detail{padding:1rem;background:var(--panel);border-radius:14px;border-left:4px solid var(--accent)}.stories{display:grid;gap:1rem}.story{overflow:hidden;background:var(--panel);border:1px solid var(--line);border-radius:18px}.story img{width:100%;aspect-ratio:16/10;object-fit:cover;filter:grayscale(1)}.story div{padding:1rem}.source{padding:1rem;background:var(--panel);border:1px solid var(--line);border-radius:12px;margin-bottom:.6rem}.source a{color:#f1c4a4}.source p{margin:.3rem 0 0;font-size:.85rem}@media(min-width:760px){.stats{grid-template-columns:repeat(3,1fr)}.stat{display:block}.card{min-width:300px}.compare{aspect-ratio:16/10}.mapbox{grid-template-columns:1.5fr 1fr}.stories{grid-template-columns:1fr 1fr}}</style></head><body><div id="app"><header class="hero"><div class="wrap"><div class="eyebrow">Version 2 · 13.–15. februar 1945</div><h1>Dresden i flammer</h1><p class="lead">En mobil fortælling om byen før angrebet, de fire luftangreb, ildstormen og genopbygningen.</p><div class="chips"><span class="chip">Interaktiv tidslinje</span><span class="chip">Før/efter</span><span class="chip">Kort</span></div></div></header><nav class="nav"><a href="#foer">Før</a><a href="#angreb">Angrebet</a><a href="#sammenlign">Før/efter</a><a href="#kort">Kort</a><a href="#efter">Efter</a><a href="#kilder">Kilder</a></nav><section id="foer"><div class="wrap"><div class="eyebrow">01 · Før angrebet</div><h2>Firenze ved Elben</h2><p class="lead">Dresden var en berømt barok- og kulturby. Den var samtidig en del af Nazitysklands krigsøkonomi med jernbaner, industri og militære funktioner.</p><div class="stats"><div class="stat"><strong>4</strong><span>store angrebsbølger</span></div><div class="stat"><strong>13.–15/2</strong><span>de mest ødelæggende døgn</span></div><div class="stat"><strong>22.700–25.000</strong><span>dræbte ifølge historikerkommissionen</span></div></div></div></section><section id="angreb"><div class="wrap"><div class="eyebrow">02 · Angrebet</div><h2>Fire bølger på mindre end to døgn</h2><div class="timeline"><article class="card"><div class="time">13. februar · ca. 22.13</div><h3>Første britiske bølge</h3><p>Spræng- og brandbomber åbnede tage, gader og bygninger og skabte brande i centrum.</p></article><article class="card"><div class="time">14. februar · ca. 01.21</div><h3>Anden britiske bølge</h3><p>En større styrke ramte, mens redningsarbejdet var i gang. Brande smeltede sammen til en ildstorm.</p></article><article class="card"><div class="time">14. februar · middag</div><h3>Amerikansk dagsangreb</h3><p>Amerikanske B-17 bombede Dresden. Røg og vejr gjorde præcision vanskelig.</p></article><article class="card"><div class="time">15. februar · formiddag</div><h3>Sidste større angreb</h3><p>Endnu en amerikansk bølge ramte byen og allerede ødelagte områder.</p></article></div></div></section><section id="sammenlign"><div class="wrap"><div class="eyebrow">03 · Træk billedet</div><h2>Fra byrum til ruiner</h2><div class="compare" id="compare"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Dresden._Frauenkirche_mit_Neumarkt_LOC_ppmsca.52545.jpg/1280px-Dresden._Frauenkirche_mit_Neumarkt_LOC_ppmsca.52545.jpg" alt="Dresden før 1945"><div class="after" id="after"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Bundesarchiv_Bild_183-60015-0002%2C_Dresden%2C_Denkmal_Martin_Luther%2C_Frauenkirche%2C_Ruine.jpg/960px-Bundesarchiv_Bild_183-60015-0002%2C_Dresden%2C_Denkmal_Martin_Luther%2C_Frauenkirche%2C_Ruine.jpg" alt="Dresden efter bombardementet"></div><span class="label before-label">Før 1945</span><span class="label after-label">1945</span><span class="handle" id="handle">↔</span><input class="range" id="range" type="range" min="8" max="92" value="50" aria-label="Sammenlign før og efter"></div><p>Fotografierne viser samme historiske byområde, men er ikke taget fra præcis samme position.</p></div></section><section id="kort"><div class="wrap"><div class="eyebrow">04 · Tragediens geografi</div><h2>Stederne i byen</h2><p class="lead">Et rigtigt OpenStreetMap-kort over de centrale steder i fortællingen. Tryk på markørerne eller listen for at navigere.</p><div class="mapbox"><div id="dresden-map" class="map" aria-label="Interaktivt kort over Dresden"></div><div><div class="place-list"><button v-for="(place,index) in places" :key="place.name" class="place" :class="{active:selectedIndex===index}" @click="selectPlace(index)"><small>{{ place.type }}</small><strong>{{ place.name }}</strong><span>{{ place.summary }}</span></button></div><div class="detail"><h3>{{ selectedPlace.name }}</h3><p>{{ selectedPlace.description }}</p></div></div></div></div></section><section id="efter"><div class="wrap"><div class="eyebrow">05 · Efterspillet</div><h2>Ruinen og genopbygningen</h2><div class="stories"><article class="story"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Bundesarchiv_Bild_183-60015-0002%2C_Dresden%2C_Denkmal_Martin_Luther%2C_Frauenkirche%2C_Ruine.jpg/960px-Bundesarchiv_Bild_183-60015-0002%2C_Dresden%2C_Denkmal_Martin_Luther%2C_Frauenkirche%2C_Ruine.jpg" alt="Frauenkirches ruin"><div><h3>Ruinen som mindesmærke</h3><p>Frauenkirches ruiner blev bevaret i DDR som symbol på krigens ødelæggelse.</p></div></article><article class="story"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/FRAUENKIRCHE_UF.jpg/960px-FRAUENKIRCHE_UF.jpg" alt="Den genopbyggede Frauenkirche"><div><h3>Genopbygning</h3><p>Kirken blev genopført efter genforeningen og indviet i 2005 som symbol på forsoning.</p></div></article></div><div class="detail" style="margin-top:1rem"><h3>Den nødvendige ramme</h3><p>Dresden var en civil katastrofe. Angrebet skete samtidig i en krig startet af Nazityskland efter Holocaust og omfattende tysk ødelæggelse i Europa. Begge historiske sandheder skal kunne rummes samtidig.</p></div></div></section><section id="kilder"><div class="wrap"><div class="eyebrow">06 · Kilder</div><h2>Dokumentation</h2><div class="source"><a href="https://www.dresden.de/de/leben/stadtportrait/stadtgeschichte/ereignisse/13-februar-1945.php">Stadt Dresden: 13. februar 1945</a><p>Historisk materiale og historikerkommissionens dødstal.</p></div><div class="source"><a href="https://commons.wikimedia.org/wiki/Category:Bombing_of_Dresden_in_World_War_II">Wikimedia Commons</a><p>Arkivfotografier, metadata og billedlicenser.</p></div><div class="source"><a href="https://commons.wikimedia.org/wiki/File:Bundesarchiv_Bild_146-1994-041-07,_Dresden,_zerstörtes_Stadtzentrum.jpg">Bundesarchiv-foto af centrum</a><p>CC BY-SA 3.0 DE.</p></div></div></section><script>const { createApp, ref, computed, onMounted, nextTick } = Vue;createApp({setup() {const compareValue = ref(50);const selectedIndex = ref(0);const places = [{ name:'Frauenkirche', type:'Symbol', lat:51.0519, lng:13.7416, summary:'Ruinen og genopbygning', description:'Frauenkirche kollapsede efter brand og varmebelastning. Ruinen stod i årtier, og kirken blev genopført fra 1994 til 2005.' },{ name:'Altmarkt', type:'Ofrene', lat:51.0484, lng:13.7378, summary:'Samlingssted efter angrebet', description:'Altmarkt blev brugt til at samle, identificere og kremere mange af de omkomne efter bombardementet.' },{ name:'Dresden Hauptbahnhof', type:'Transport', lat:51.0407, lng:13.7320, summary:'Jernbaneknudepunkt', description:'Hovedbanegården var et vigtigt knudepunkt for militær trafik, civile og de mange flygtninge i byen.' },{ name:'Großer Garten', type:'Flugt', lat:51.0378, lng:13.7618, summary:'Åbent område øst for centrum', description:'Mennesker søgte mod åbne områder som Großer Garten for at undslippe brande, røg og sammenstyrtninger.' },{ name:'Slaughterhouse Five', type:'Vidnesbyrd', lat:51.0561, lng:13.7235, summary:'Kurt Vonneguts krigsfangenskab', description:'Kurt Vonnegut overlevede bombardementet som amerikansk krigsfange og brugte oplevelsen i romanen Slaughterhouse-Five.' }];const selectedPlace = computed(() => places[selectedIndex.value]);let map;const markers = [];function setCompare(value) {compareValue.value = Number(value);document.getElementById('after').style.width = compareValue.value + '%';document.getElementById('handle').style.left = compareValue.value + '%';}function selectPlace(index, moveMap = true) {selectedIndex.value = index;if (map && moveMap) {const place = places[index];map.flyTo([place.lat, place.lng], 15, { duration: 0.8 });markers[index].openPopup();}}onMounted(async () => {await nextTick();map = L.map('dresden-map', { scrollWheelZoom:false }).setView([51.0493, 13.7381], 13);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom:19, attribution:'&copy; OpenStreetMap contributors' }).addTo(map);places.forEach((place, index) => {const marker = L.marker([place.lat, place.lng]).addTo(map).bindPopup('<strong>' + place.name + '</strong><br>' + place.summary);marker.on('click', () => selectPlace(index, false));markers.push(marker);});L.control.scale({ imperial:false }).addTo(map);setTimeout(() => map.invalidateSize(), 100);});return { compareValue, places, selectedIndex, selectedPlace, setCompare, selectPlace };}}).mount('#app');</script></div></body></html>
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#151412">
+  <title>Dresden 1945 · ødelæggelse og genopbygning</title>
+  <link rel="preconnect" href="https://upload.wikimedia.org">
+  <link rel="preconnect" href="https://tile.openstreetmap.org">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
+  <script>
+    window.imageFallback = function (img, label) {
+      img.onerror = null;
+      const safe = String(label || 'Billedet kunne ikke indlæses').replace(/[<>&"]/g, '');
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800">
+        <rect width="100%" height="100%" fill="#2b2926"/>
+        <path d="M0 650L280 400l170 160 180-230 570 470H0z" fill="#4b4741"/>
+        <text x="50%" y="47%" fill="#f5efe6" font-family="system-ui,sans-serif" font-size="38" text-anchor="middle">${safe}</text>
+        <text x="50%" y="55%" fill="#c7beb3" font-family="system-ui,sans-serif" font-size="24" text-anchor="middle">Kilden svarer ikke lige nu</text>
+      </svg>`;
+      img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+      img.closest('figure, article')?.classList.add('image-failed');
+    };
+  </script>
+  <style>
+    :root{
+      --bg:#151412;--panel:#22201d;--panel2:#2b2824;--text:#f6f0e7;
+      --muted:#c0b6aa;--accent:#e6a16f;--line:rgba(255,255,255,.14);
+      --shadow:0 22px 70px rgba(0,0,0,.28)
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}
+    img{display:block;max-width:100%}
+    a{color:#f1bd96}
+    h1,h2,h3{font-family:Georgia,"Times New Roman",serif;line-height:1.08;font-weight:500}
+    h1{font-size:clamp(3.7rem,15vw,8rem);max-width:8ch;margin:.25rem 0 1rem}
+    h2{font-size:clamp(2.25rem,8.5vw,4.8rem);margin:.2rem 0 1.1rem}
+    h3{font-size:1.55rem;margin:.25rem 0 .55rem}
+    p{color:var(--muted)}
+    .wrap{width:min(calc(100% - 28px),1080px);margin-inline:auto}
+    .eyebrow{text-transform:uppercase;letter-spacing:.17em;color:#f2bd96;font-size:.72rem;font-weight:750}
+    .lead{font-size:clamp(1.05rem,2.5vw,1.3rem);max-width:760px;color:#ddd5ca}
+    .hero{position:relative;min-height:90svh;display:flex;align-items:flex-end;overflow:hidden}
+    .hero-media{position:absolute;inset:0}
+    .hero-media img{width:100%;height:100%;object-fit:cover;object-position:center 42%;filter:grayscale(1) contrast(1.06)}
+    .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,14,12,.08),rgba(15,14,12,.55) 45%,#151412 96%)}
+    .hero-content{position:relative;z-index:1;padding:4rem 0 3.25rem}
+    .badge-row{display:flex;gap:.5rem;flex-wrap:wrap}
+    .badge{border:1px solid rgba(255,255,255,.28);background:rgba(0,0,0,.35);backdrop-filter:blur(8px);border-radius:999px;padding:.42rem .68rem;font-size:.78rem}
+    .nav{position:sticky;top:0;z-index:999;display:flex;overflow:auto;background:rgba(21,20,18,.92);backdrop-filter:blur(14px);border-block:1px solid var(--line);padding-inline:max(10px,calc((100vw - 1080px)/2))}
+    .nav a{color:var(--muted);text-decoration:none;white-space:nowrap;padding:.9rem .72rem;font-size:.82rem}
+    section{padding:5.25rem 0;border-bottom:1px solid var(--line)}
+    .intro-grid,.stats,.history-grid,.source-grid{display:grid;gap:1rem}
+    .stats{margin-top:1.8rem}
+    .stat{background:var(--panel);border:1px solid var(--line);padding:1.1rem;border-radius:16px}
+    .stat strong{display:block;font:2rem Georgia;color:var(--text)}
+    .stat span{color:var(--muted);font-size:.88rem}
+    .timeline{display:grid;gap:.8rem;margin-top:1.5rem}
+    .timeline article{display:grid;grid-template-columns:88px 1fr;gap:1rem;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:1.05rem}
+    .timeline time{color:#f2bd96;font-weight:750;font-size:.82rem}
+    .timeline p{margin:.25rem 0 0}
+    .image-pair{display:grid;gap:1rem;margin-top:1.5rem}
+    figure{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+    figure img{width:100%;aspect-ratio:4/3;object-fit:cover;background:#2b2926}
+    figcaption{padding:.85rem 1rem;color:var(--muted);font-size:.86rem}
+    figcaption strong{display:block;color:var(--text);font-size:1rem;margin-bottom:.15rem}
+    .compare-box{margin-top:1.25rem;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:1rem}
+    .compare-stage{--position:50%;position:relative;aspect-ratio:16/10;overflow:hidden;border-radius:14px;background:#292622}
+    .compare-stage>img,.compare-layer img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .compare-layer{position:absolute;inset:0;clip-path:inset(0 calc(100% - var(--position)) 0 0)}
+    .compare-line{position:absolute;top:0;bottom:0;left:var(--position);width:2px;background:#fff;transform:translateX(-1px);pointer-events:none}
+    .compare-knob{position:absolute;left:var(--position);top:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:#fff;color:#151412;font-weight:900;box-shadow:0 4px 20px rgba(0,0,0,.35);pointer-events:none}
+    .compare-label{position:absolute;top:.75rem;padding:.35rem .55rem;border-radius:999px;background:rgba(0,0,0,.65);font-size:.72rem}
+    .compare-label.before{right:.75rem}.compare-label.after{left:.75rem}
+    .compare-control{width:100%;margin:.85rem 0 .15rem;accent-color:#e6a16f}
+    .note{font-size:.86rem;margin:.7rem 0 0}
+    .story-cards{display:grid;gap:1rem;margin-top:1.6rem}
+    .story-card{background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+    .story-card img{width:100%;aspect-ratio:16/10;object-fit:cover;background:#2b2926}
+    .story-card .copy{padding:1.05rem}
+    .story-card p{margin:.3rem 0}
+    .rebuild-timeline{display:grid;gap:.7rem;margin:1.5rem 0}
+    .rebuild-step{display:grid;grid-template-columns:70px 1fr;gap:1rem;padding:1rem;border-left:2px solid #8c5b3b;background:linear-gradient(90deg,rgba(230,161,111,.08),transparent)}
+    .rebuild-step strong{color:#f2bd96;font-family:Georgia;font-size:1.25rem}
+    .look-for{display:grid;gap:.75rem;margin-top:1.5rem}
+    .look-item{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:1rem}
+    .look-item b{color:var(--text)}
+    .map-layout{display:grid;gap:1rem}
+    #dresden-map{min-height:430px;border-radius:20px;overflow:hidden;border:1px solid var(--line);background:#d7d0c5}
+    .map-fallback{height:100%;min-height:430px;display:grid;place-items:center;padding:2rem;color:#332f2b;text-align:center}
+    .place-list{display:grid;gap:.55rem}
+    .place{appearance:none;width:100%;text-align:left;border:1px solid var(--line);background:var(--panel);color:var(--text);padding:.9rem;border-radius:13px;cursor:pointer}
+    .place.active{border-color:var(--accent);box-shadow:inset 3px 0 var(--accent)}
+    .place small{display:block;color:#f2bd96;margin-bottom:.15rem}
+    .place span{display:block;color:var(--muted);font-size:.82rem;margin-top:.2rem}
+    .detail{margin-top:.8rem;padding:1rem;background:var(--panel2);border-radius:14px;border-left:4px solid var(--accent)}
+    .source-grid{margin-top:1.5rem}
+    .source{padding:1rem;background:var(--panel);border:1px solid var(--line);border-radius:14px}
+    .source p{margin:.3rem 0 0;font-size:.86rem}
+    footer{padding:2.5rem 0 4rem}
+    [v-cloak]{display:none}
+    @media(min-width:720px){
+      .stats{grid-template-columns:repeat(3,1fr)}
+      .image-pair{grid-template-columns:1fr 1fr}
+      .story-cards{grid-template-columns:repeat(2,1fr)}
+      .history-grid{grid-template-columns:1.15fr .85fr;align-items:start}
+      .map-layout{grid-template-columns:1.45fr .9fr}
+      .source-grid{grid-template-columns:repeat(2,1fr)}
+    }
+  </style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-media">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Bundesarchiv_Bild_183-59222-0001%2C_Dresden%2C_Frauenkirche%2C_Ruine.jpg"
+         alt="Ruinenne af Frauenkirche i 1958"
+         onerror="imageFallback(this,'Ruinerne af Frauenkirche')">
+  </div>
+  <div class="wrap hero-content">
+    <div class="eyebrow">Version 3 · billeder verificeret</div>
+    <h1>Dresden i flammer</h1>
+    <p class="lead">En fortælling om byen før bombardementet, ødelæggelsen i februar 1945 og det lange, politiske og tekniske arbejde med at bygge centrum op igen.</p>
+    <div class="badge-row">
+      <span class="badge">Før og efter vises altid</span>
+      <span class="badge">Vue 3</span>
+      <span class="badge">OpenStreetMap</span>
+    </div>
+  </div>
+</header>
+
+<nav class="nav" aria-label="Sektioner">
+  <a href="#foer">Før</a><a href="#angreb">Angrebet</a><a href="#billeder">Før/efter</a>
+  <a href="#genopbygning">Genopbygningen</a><a href="#spor">Originale spor</a><a href="#kort">Kort</a><a href="#kilder">Kilder</a>
+</nav>
+
+<main>
+<section id="foer">
+  <div class="wrap">
+    <div class="eyebrow">01 · Før februar 1945</div>
+    <h2>En barokby og en krigsby</h2>
+    <p class="lead">Dresden blev kaldt “Firenze ved Elben” på grund af samlingerne, arkitekturen og byens placering ved floden. Men byen var ikke uden militær betydning: jernbaneknudepunkter, værksteder, administration og industri bandt den til Nazitysklands krigsøkonomi.</p>
+    <div class="stats">
+      <div class="stat"><strong>1726–1743</strong><span>George Bähr opfører Frauenkirche</span></div>
+      <div class="stat"><strong>4 bølger</strong><span>de store angreb 13.–15. februar 1945</span></div>
+      <div class="stat"><strong>22.700–25.000</strong><span>anslået antal dræbte ifølge Dresdens historikerkommission</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="angreb">
+  <div class="wrap">
+    <div class="eyebrow">02 · Angrebet</div>
+    <h2>Fire angrebsbølger på mindre end to døgn</h2>
+    <div class="timeline">
+      <article><time>13/2 · ca. 22.13</time><div><h3>Første britiske bølge</h3><p>Sprængbomber åbnede tage, vinduer og gader. Brandbomberne, som fulgte, fik ild til at brede sig gennem den tætte bykerne.</p></div></article>
+      <article><time>14/2 · ca. 01.21</time><div><h3>Anden britiske bølge</h3><p>En større styrke ramte, mens beboere og redningsmandskab allerede var på gaden. De mange brande smeltede sammen og skabte en voldsom ildstorm.</p></div></article>
+      <article><time>14/2 · middag</time><div><h3>Amerikansk dagsangreb</h3><p>B-17-bombefly ramte Dresden. Røg, skyer og kaotiske forhold gjorde målidentifikation og præcision vanskelig.</p></div></article>
+      <article><time>15/2 · formiddag</time><div><h3>Endnu et amerikansk angreb</h3><p>En sidste større bølge ramte den allerede ødelagte by og dens transportsystem.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<section id="billeder">
+  <div class="wrap">
+    <div class="eyebrow">03 · Før og efter</div>
+    <h2>Begge billeder er nu altid synlige</h2>
+    <p class="lead">På mobil vises billederne separat, så et defekt script aldrig kan skjule det ene. Under dem ligger en ekstra interaktiv sammenligning.</p>
+
+    <div class="image-pair">
+      <figure>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Dresden._Frauenkirche_mit_Neumarkt_LOC_ppmsca.52545.jpg/1280px-Dresden._Frauenkirche_mit_Neumarkt_LOC_ppmsca.52545.jpg"
+             alt="Frauenkirche og Neumarkt omkring 1898"
+             onerror="imageFallback(this,'Dresden før 1945')">
+        <figcaption><strong>Før: Neumarkt omkring 1898</strong>Frauenkirche står midt i den tætte historiske bystruktur.</figcaption>
+      </figure>
+      <figure>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Bundesarchiv_Bild_183-59222-0001%2C_Dresden%2C_Frauenkirche%2C_Ruine.jpg"
+             alt="Frauenkirches ruiner i 1958"
+             onerror="imageFallback(this,'Dresden efter ødelæggelsen')">
+        <figcaption><strong>Efter: ruinen i 1958</strong>Kirken var styrtet sammen, og området omkring den var blevet radikalt forandret.</figcaption>
+      </figure>
+    </div>
+
+    <div class="compare-box">
+      <div class="compare-stage" id="compare-stage">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Dresden._Frauenkirche_mit_Neumarkt_LOC_ppmsca.52545.jpg/1280px-Dresden._Frauenkirche_mit_Neumarkt_LOC_ppmsca.52545.jpg"
+             alt="Dresden før 1945"
+             onerror="imageFallback(this,'Før 1945')">
+        <div class="compare-layer">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Bundesarchiv_Bild_183-59222-0001%2C_Dresden%2C_Frauenkirche%2C_Ruine.jpg"
+               alt="Frauenkirches ruin"
+               onerror="imageFallback(this,'Efter 1945')">
+        </div>
+        <span class="compare-label before">Før 1945</span>
+        <span class="compare-label after">Efter 1945</span>
+        <span class="compare-line"></span><span class="compare-knob">↔</span>
+      </div>
+      <input class="compare-control" id="compare-control" type="range" min="0" max="100" value="50" aria-label="Træk mellem før og efter">
+      <p class="note">Fotografierne viser samme område, men ikke præcis samme kameraposition. Derfor er det en historisk sammenligning, ikke en perfekt geografisk overlay.</p>
+    </div>
+  </div>
+</section>
+
+<section id="genopbygning">
+  <div class="wrap">
+    <div class="eyebrow">04 · Den lange genopbygning</div>
+    <h2>Byen blev ikke genopført efter én samlet plan</h2>
+    <div class="history-grid">
+      <div>
+        <p>Dresdens centrum blev genopbygget i flere politiske perioder. I DDR blev enkelte monumenter som Zwinger og Semperoper prioriteret, mens Frauenkirches ruin blev stående som krigsmindesmærke. Andre dele af den gamle by blev erstattet af brede gader, åbne pladser og moderne byggeri.</p>
+        <p>Efter den tyske genforening ændrede mulighederne sig. Den 13. februar 1990 offentliggjorde en borgergruppe “Ruf aus Dresden”, der krævede en historisk tro genopførelse af Frauenkirche finansieret gennem donationer. Dresdens byråd godkendte projektet den 20. februar 1992.</p>
+        <p>Ruinen blev ikke bare ryddet. Fra januar 1993 blev den opdelt i felter, fotograferet og registreret sten for sten. Efter 17 måneder var cirka 22.000 m³ ruiner gennemgået. Selve genopførelsen begyndte med den første genplacerede sten den 27. maj 1994, og kirken blev indviet igen den 30. oktober 2005.</p>
+      </div>
+      <figure>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/30-10-05-Frauenkirche-Dresden.jpg/1280px-30-10-05-Frauenkirche-Dresden.jpg"
+             alt="Den genopførte Frauenkirche i 2005"
+             onerror="imageFallback(this,'Den genopførte Frauenkirche')">
+        <figcaption><strong>30. oktober 2005</strong>Frauenkirche på dagen for genindvielsen. De mørke partier i facaden viser mange af de genbrugte historiske sten.</figcaption>
+      </figure>
+    </div>
+
+    <div class="rebuild-timeline">
+      <div class="rebuild-step"><strong>1945</strong><div><b>Ødelæggelsen.</b> Frauenkirche står efter angrebet, men kollapser dagen efter på grund af varmebelastningen i sandstenen.</div></div>
+      <div class="rebuild-step"><strong>1945–89</strong><div><b>Ruinen bevares.</b> Den fungerer som mindesmærke, mens andre monumenter genopføres i DDR.</div></div>
+      <div class="rebuild-step"><strong>1990</strong><div><b>Ruf aus Dresden.</b> Et borgerinitiativ gør genopførelsen til et internationalt projekt.</div></div>
+      <div class="rebuild-step"><strong>1992</strong><div><b>Den politiske beslutning.</b> Dresdens byråd godkender genopførelsen.</div></div>
+      <div class="rebuild-step"><strong>1993</strong><div><b>Arkæologisk oprydning.</b> Sten og fragmenter nummereres, måles og forbindes med deres oprindelige placering.</div></div>
+      <div class="rebuild-step"><strong>1994</strong><div><b>Byggeriet starter.</b> Historiske dele kombineres med nyhugget sandsten og moderne beregninger.</div></div>
+      <div class="rebuild-step"><strong>2005</strong><div><b>Genindvielsen.</b> Kirken åbner igen og bliver omdrejningspunkt for den videre genopbygning af Neumarkt.</div></div>
+    </div>
+
+    <div class="story-cards">
+      <article class="story-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/03/Bundesarchiv_Bild_183-1985-0117-031%2C_Dresden%2C_zerst%C3%B6rte_Semperoper.jpg"
+             alt="Semperopers ødelagte auditorium i 1945"
+             onerror="imageFallback(this,'Semperoper i ruiner')">
+        <div class="copy"><div class="eyebrow">Semperoper · 1945</div><h3>Et tomt skalskelet</h3><p>Operahuset blev alvorligt ødelagt. DDR besluttede senere at genopføre det, og byggeriet begyndte i 1977.</p></div>
+      </article>
+      <article class="story-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Semper_Oper_in_Dresden.jpg/1280px-Semper_Oper_in_Dresden.jpg"
+             alt="Den genopførte Semperoper"
+             onerror="imageFallback(this,'Den genopførte Semperoper')">
+        <div class="copy"><div class="eyebrow">Semperoper · genåbnet 1985</div><h3>Genopført før murens fald</h3><p>Operaen genåbnede præcis 40 år efter ødelæggelsen, den 13. februar 1985.</p></div>
+      </article>
+      <article class="story-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Dresdner_Schloss_DDR-Zustand.jpg/1280px-Dresdner_Schloss_DDR-Zustand.jpg"
+             alt="Dresdner Residenzschloss som ruin i 1980"
+             onerror="imageFallback(this,'Residenzschloss før restaureringen')">
+        <div class="copy"><div class="eyebrow">Residenzschloss · 1980</div><h3>En ruin i årtier</h3><p>Slottet stod længe som en beskadiget skal. Først sidst i DDR-perioden og især efter genforeningen kom en langsigtet restaurering i gang.</p></div>
+      </article>
+      <article class="story-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Dresden_Residenzschloss_01.jpg/1280px-Dresden_Residenzschloss_01.jpg"
+             alt="Det restaurerede Residenzschloss"
+             onerror="imageFallback(this,'Det restaurerede Residenzschloss')">
+        <div class="copy"><div class="eyebrow">Residenzschloss · i dag</div><h3>Historisk og nyt side om side</h3><p>Paladset rummer både rekonstruerede repræsentationsrum og moderne museumsarkitektur. Arbejdet er bevidst lagdelt frem for én simpel kopi.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="spor">
+  <div class="wrap">
+    <div class="eyebrow">05 · Hvad kan du se i byen?</div>
+    <h2>Originale sten, gamle mure og rekonstruerede facader</h2>
+    <p class="lead">Det er vigtigt at skelne mellem bevaret originalsubstans, genbrugte bygningsdele og nyere kopier. Dresden består af alle tre.</p>
+    <div class="look-for">
+      <div class="look-item"><b>Frauenkirches mørke sten:</b> Kirken består inklusive underkirken og de genintegrerede ruinpartier af cirka 45 procent historisk stenmateriale. 8.425 gamle kvadersten blev genbrugt, heraf 7.110 i facaden.</div>
+      <div class="look-item"><b>Alteret inde i Frauenkirche:</b> Omkring 80 procent af alterets materiale er historisk. 1.642 fragmenter blev placeret tilbage på deres oprindelige sted.</div>
+      <div class="look-item"><b>Det store ruinfragment ved indgang F:</b> En bevaret del af den sammenstyrtede bygning står udenfor som et direkte fysisk spor efter 1945.</div>
+      <div class="look-item"><b>Residenzschloss:</b> Her kan du se ældre murværk og restaurerede historiske strukturer sammen med moderne indgreb. Paladset er ikke bare en glat kopi.</div>
+      <div class="look-item"><b>Neumarkt:</b> De fleste huse er nyere. Nogle facader er nøje rekonstruerede “Leitfassaden”, mens andre er moderne fortolkninger på de historiske parceller.</div>
+      <div class="look-item"><b>Fürstenzug:</b> Det store porcelænsvægmaleri overlevede bombardementet langt bedre end de omkringliggende bygninger og er derfor et af de tydeligste ældre elementer i centrum.</div>
+    </div>
+  </div>
+</section>
+
+<section id="kort">
+  <div class="wrap">
+    <div class="eyebrow">06 · Gå historien</div>
+    <h2>Stederne på et OpenStreetMap-kort</h2>
+    <div class="map-layout" id="map-app" v-cloak>
+      <div id="dresden-map"><div class="map-fallback">Kortet indlæses…</div></div>
+      <div>
+        <div class="place-list">
+          <button v-for="(place,index) in places" :key="place.name" class="place" :class="{active:selectedIndex===index}" @click="selectPlace(index)">
+            <small>{{ place.type }}</small><strong>{{ place.name }}</strong><span>{{ place.summary }}</span>
+          </button>
+        </div>
+        <div class="detail"><h3>{{ selectedPlace.name }}</h3><p>{{ selectedPlace.description }}</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="kilder">
+  <div class="wrap">
+    <div class="eyebrow">07 · Dokumentation</div>
+    <h2>Kilder og billedlicenser</h2>
+    <div class="source-grid">
+      <div class="source"><a href="https://www.frauenkirche-dresden.de/rebuilding-chronicle">Frauenkirche Dresden: byggekrønike</a><p>Beslutninger, arkæologisk oprydning, genbrug af sten og byggeforløbet 1992–2005.</p></div>
+      <div class="source"><a href="https://www.frauenkirche-dresden.de/statistical-data">Frauenkirche Dresden: bygningsdata</a><p>Tal for historisk stenmateriale, facade og alter.</p></div>
+      <div class="source"><a href="https://www.dresden.de/de/stadtraum/zentrale-projekte/Neumarkt.php">Landeshauptstadt Dresden: Neumarkt</a><p>Genopbygningen af pladsen og de otte omkringliggende kvarterer.</p></div>
+      <div class="source"><a href="https://www.skd.museum/en/visit/royal-palace/">SKD: Royal Palace</a><p>Residenzschloss, den lange restaurering og blandingen af historiske og nye rum.</p></div>
+      <div class="source"><a href="https://commons.wikimedia.org/wiki/File:Dresden._Frauenkirche_mit_Neumarkt_LOC_ppmsca.52545.jpg">Før-billedet</a><p>Library of Congress / Wikimedia Commons, ca. 1898, public domain.</p></div>
+      <div class="source"><a href="https://commons.wikimedia.org/wiki/File:Bundesarchiv_Bild_183-59222-0001,_Dresden,_Frauenkirche,_Ruine.jpg">Ruinbilledet</a><p>Bundesarchiv, 1958, CC BY-SA 3.0 DE.</p></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><p>En mobil fortælling om Dresden 1945 og byens lange genopbygning.</p></div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@3.5.13/dist/vue.global.prod.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+  (function(){
+    const range = document.getElementById('compare-control');
+    const stage = document.getElementById('compare-stage');
+    if (range && stage) {
+      const update = () => stage.style.setProperty('--position', range.value + '%');
+      range.addEventListener('input', update, {passive:true});
+      update();
+    }
+
+    const places = [
+      {name:'Frauenkirche',type:'Originale sten',lat:51.0519,lng:13.7416,summary:'Mørke, genbrugte sten i facaden',description:'Se forskellen mellem mørke historiske sten og lysere ny sandsten. Inde i kirken er store dele af alteret også originalt materiale.'},
+      {name:'Neumarkt',type:'Byplan',lat:51.0514,lng:13.7404,summary:'Rekonstruktion og moderne facader',description:'Området er genopført kvarter for kvarter. Nogle facader kopierer dokumenterede historiske forbilleder, mens andre er nutidige.'},
+      {name:'Residenzschloss',type:'Lag på lag',lat:51.0528,lng:13.7363,summary:'Originalt, restaureret og nyt',description:'Slottet viser tydeligt, at genopbygning kan være både rekonstruktion, konservering og moderne museumsbyggeri.'},
+      {name:'Semperoper',type:'DDR-genopbygning',lat:51.0544,lng:13.7353,summary:'Genåbnet i 1985',description:'Operaen blev genopført i DDR og genåbnede præcis 40 år efter ødelæggelsen.'},
+      {name:'Zwinger',type:'Tidlig rekonstruktion',lat:51.0531,lng:13.7330,summary:'Genopbygget fra 1945',description:'Zwinger var et af de monumenter, der tidligt blev prioriteret. Store dele var igen restaureret i 1960’erne.'},
+      {name:'Fürstenzug',type:'Overlevende værk',lat:51.0526,lng:13.7392,summary:'Porcelænsvæggen overlevede',description:'Det store vægmaleri i Meissen-porcelæn blev kun relativt let beskadiget og står som et sjældent ældre element i området.'}
+    ];
+
+    if (!window.Vue) {
+      document.querySelector('[v-cloak]')?.removeAttribute('v-cloak');
+      document.getElementById('dresden-map').innerHTML = '<div class="map-fallback"><div><strong>Kortbiblioteket kunne ikke indlæses.</strong><br><a href="https://www.openstreetmap.org/#map=15/51.052/13.739">Åbn stederne i OpenStreetMap</a></div></div>';
+      return;
+    }
+
+    const {createApp,ref,computed,onMounted,nextTick} = Vue;
+    createApp({
+      setup(){
+        const selectedIndex = ref(0);
+        const selectedPlace = computed(()=>places[selectedIndex.value]);
+        let map = null;
+        const markers = [];
+
+        function selectPlace(index){
+          selectedIndex.value = index;
+          const place = places[index];
+          if (map && markers[index]) {
+            map.flyTo([place.lat,place.lng],16,{duration:.7});
+            markers[index].openPopup();
+          }
+        }
+
+        onMounted(async()=>{
+          await nextTick();
+          const el = document.getElementById('dresden-map');
+          if (!window.L) {
+            el.innerHTML = '<div class="map-fallback"><div><strong>Kortet kunne ikke indlæses.</strong><br><a href="https://www.openstreetmap.org/#map=15/51.052/13.739">Åbn OpenStreetMap</a></div></div>';
+            return;
+          }
+          el.innerHTML = '';
+          map = L.map(el,{scrollWheelZoom:false}).setView([51.052,13.739],15);
+          L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
+            maxZoom:19,
+            attribution:'&copy; OpenStreetMap-bidragsydere'
+          }).addTo(map);
+          places.forEach((p,index)=>{
+            const marker = L.marker([p.lat,p.lng]).addTo(map).bindPopup('<strong>'+p.name+'</strong><br>'+p.summary);
+            marker.on('click',()=>selectedIndex.value=index);
+            markers.push(marker);
+          });
+          setTimeout(()=>map.invalidateSize(),250);
+        });
+
+        return {places,selectedIndex,selectedPlace,selectPlace};
+      }
+    }).mount('#map-app');
+  })();
+</script>
+</body>
+</html>
