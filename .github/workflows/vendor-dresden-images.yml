@@ -1,0 +1,67 @@
+name: Vendor Dresden images
+
+on:
+  push:
+    branches: [gh-pages]
+    paths:
+      - '.github/workflows/vendor-dresden-images.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  vendor-images:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out gh-pages
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          fetch-depth: 0
+
+      - name: Download historical images
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p assets/images
+
+          download() {
+            local url="$1"
+            local out="$2"
+            echo "Downloading $out"
+            curl -L --fail --retry 3 --retry-delay 2 \
+              -A 'axebang-dresden-history-site/1.0' \
+              "$url" -o "assets/images/$out"
+          }
+
+          download 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Dresden._Frauenkirche_mit_Neumarkt_LOC_ppmsca.52545.jpg/1280px-Dresden._Frauenkirche_mit_Neumarkt_LOC_ppmsca.52545.jpg' 'frauenkirche-before.jpg'
+          download 'https://upload.wikimedia.org/wikipedia/commons/1/17/Bundesarchiv_Bild_183-59222-0001%2C_Dresden%2C_Frauenkirche%2C_Ruine.jpg' 'frauenkirche-ruin.jpg'
+          download 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/30-10-05-Frauenkirche-Dresden.jpg/1280px-30-10-05-Frauenkirche-Dresden.jpg' 'frauenkirche-after.jpg'
+
+          download 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Dresden_Semperoper_1900.jpg/1280px-Dresden_Semperoper_1900.jpg' 'semperoper-before.jpg'
+          download 'https://upload.wikimedia.org/wikipedia/commons/0/03/Bundesarchiv_Bild_183-1985-0117-031%2C_Dresden%2C_zerst%C3%B6rte_Semperoper.jpg' 'semperoper-ruin.jpg'
+          download 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Semperoper-dresden.jpg?width=1280' 'semperoper-after.jpg'
+
+          download 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Dresden_Schloss_1900.jpg?width=1280' 'schloss-before.jpg'
+          download 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Dresdner_Schloss_DDR-Zustand.jpg/1280px-Dresdner_Schloss_DDR-Zustand.jpg' 'schloss-ruin.jpg'
+          download 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Residenzschloss-Dresden.jpg?width=1280' 'schloss-after.jpg'
+
+          download 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Dresden_Neumarkt_Hotel_Stadt_Rom_Postkarte_um_1900.jpg?width=1280' 'neumarkt-before.jpg'
+          download 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Bundesarchiv_Bild_146-1994-041-07,_Dresden,_zerst%C3%B6rtes_Stadtzentrum.jpg?width=1280' 'neumarkt-ruin.jpg'
+          download 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Neumarkt_Dresden.jpg?width=1280' 'neumarkt-after.jpg'
+
+          file assets/images/*
+
+      - name: Commit vendored images
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/images
+          if git diff --cached --quiet; then
+            echo 'No image changes to commit.'
+          else
+            git commit -m 'Vendor Dresden historical images'
+            git push origin gh-pages
+          fi
